@@ -1,0 +1,491 @@
+/* kaskadovy styl pre stranky rocnikoveho projektu o RS kodoch */
+
+BODY { /* cele body */
+	text-align: left;
+}
+
+h1 { /* vseobecny nadpis tejto stranky, teda reed a a solomon, nieco take */
+	display: none; 
+}
+
+h2 {  /* nazvy casti podla horneho menu */	
+}
+h3 { /* krok v niektorom teste. */
+	
+}
+
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+P.odstavec {	
+	text-align: justify;
+}
+P.odstavec:first-letter {	
+	font-size: 300%;
+	font-weight: bold;	
+	float: left;
+	/* margin-right: 0.1ex; */
+}
+
+P.odstavec2 {
+    text-align: justify;
+    text-indent: 5ex;
+}
+
+P.odstavec_poznamka {
+    text-align: justify;
+    text-indent: 5ex;
+    font-style: italic;
+    font-size: 75%;
+}
+
+ td.popis {
+ 	font-weight: bold;
+ 	text-align: left;
+ 	text-family: system;
+ 	font-size: 90%;
+ }
+ .click_polynom {  /* klikaci polynom  */
+ 	cursor: pointer;
+ }
+ .click_polynom:hover {
+    color: red;
+    font-weight: bold;
+    font-decoration: underline;
+ }
+
+
+.GFPrintDebug th {  /* GF print debug */
+ 	font-family: serif;
+ 	text-align: center;
+ 	text-transform: uppercase; 	
+ 	text-decoration: underline;
+ }
+.GFPrintDebug TD {  /* GF print debug */
+ 	font-family: monospace;
+ 	text-align: right;
+ }
+
+ fieldset {
+	border: 2px solid orange;
+	font-weight: bold;
+	margin: 5px;
+}
+
+
+
+/* H L A V N A   T A B U L K A */
+#domcek {		
+	width: 780px;
+	height: 500px;	
+	margin: auto;	
+}
+#domcek,.func_click {
+    background-color: #DDDDDD;
+}
+#domcek[id]{
+    min-height: 500px;
+    height: auto;
+}
+/* logo div */
+#logo_div {	
+	text-align: center;
+}
+/* logo IMG */
+#logo {	
+	
+}
+
+/* H O R N E   M E N U */
+#horne_menu {	
+	margin: auto;
+
+	text-align: center;	
+}
+#horne_menu ul { /* horne menu - UL */        
+    list-style-type: none;    
+}
+#horne_menu li { /* horne menu - UL */		
+	display: inline;
+	
+}
+
+a.horne_url { /* url v hornom menu */
+	text-decoration: none;
+	font-family: system;
+	color: #004040;
+}
+a.horne_url:hover { /* url horne menu s kurzorom nad url */
+	text-decoration: underline;
+	color: #008080;
+}
+a.horne_url:active { /* aktivne horne url */
+
+}
+
+/* L A V E   M E N U div */
+#lave_menu {	
+	width: 135px;
+	margin-top: 5px;
+	margin-left: 4px;
+	float: left;	
+	color: #008080;
+	font-weight: bold;
+	font-size: 80%;	
+}
+#lave_menu UL {
+	margin: 2px;
+	padding: 0px;	
+}
+#lave_menu LI {
+	list-style: none;
+	text-align: center;		
+	padding: 1px;
+	width: 120px;
+	background-color: #00AAAA;
+	border: 3px outset;
+}
+#lave_menu li.hover {
+/*	border: 1px solid #CCCCCC;
+	margin: auto;
+	margin-top: 2px;
+	margin-bottom: 1px;
+*/	border: 3px ridge;
+}
+
+#lave_menu A { /* url v lavom menu */
+	color: #004040;
+	text-decoration: none;
+}
+#lave_menu A:hover { /* lave url pod kurzorom */
+	color: #80FFFF;
+}
+
+#lave_menu P { /* P v lavom menu */
+
+}
+
+
+/* T E X T O V A    C A S T */
+#picture_obsah, #rsparts_obsah {
+	width: 610px;
+	margin-left: 140px;
+	margin-top: 4px;
+	margin-bottom: 25px;
+/*	border: 1px solid white;
+*/	padding: 5px;
+	text-align: center;
+}
+#tests_obsah, #retazec_obsah, #main_obsah {		
+	margin-top: 4px;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-bottom: 25px;		
+	padding: 5px;	
+/*	border: 1px solid white;
+*/	text-align: center;	
+}
+
+
+/* F O R M U L A R E */
+INPUT,SELECT,OPTION { /* udaje vo formularoch */
+    
+}
+
+/* hlavna stranka obsah */
+#main_obsah ul {
+	text-align: left;
+}
+
+
+/***************************************/
+/* PP II CC TT UU RR EE    CC AA SS TT */
+/***************************************/
+
+#picture_intro { /* intro text v obrazok casti */
+	text-align: left;
+	
+}
+
+/* Z D R O J O V E   O B R A Z K Y  V  P I C T U R E    C A S T I */
+#zdrojove_obrazky { /* zdrojove obrazky FORM */
+	width: 100px;
+	float: left;	
+	background-image: url(pics/film.png);
+	margin-right: 10px;
+}
+#zdrojove_obrazky INPUT { /* zdrojove obrazky IMG */
+	margin: 5px;
+	padding: 0;
+	width: 70px;
+	height: 70px;
+}
+
+
+/* K R O K   V O L B Y   K O D U */
+#volba_kodu {
+	text-align: left;
+	width: 500px;	
+}
+
+#kod_info {
+	text-align: left;
+	width: 500px;
+}
+#kod_info table {
+	text-align: left;
+	width: 500px;
+	font-family: sans-serif;
+}
+#kod_info .prava {
+	width: 200px;	
+	font-size: 20px;
+	font-family: monospace;
+}
+
+#kod_info .checkbox {
+
+}
+
+/* T A B U L K A   S  O B R A Z K A M I   A  S U B M I T   B U T T O N O M */
+/*
+.images_form_table { /* obrazky zakodovane .. */
+	
+}
+.images_form_table TR { /* TR */
+	
+}
+.images_form_table TD { /* td */
+	
+}
+.images_form_table IMG { /* img */
+	vertical-align: top;
+	margin: 10px;
+}
+*/
+/* VYHODNOTENIE TABULKA */
+#vyhodnotenie TABLE {
+	border-collapse: separate;
+	table-layout: fixed;
+	margin: 0px;
+	border: 0px;
+}
+#vyhodnotenie TR {
+	
+}
+#vyhodnotenie TD {
+	vertical-align: top;	
+	padding: 3px;	
+	text-align: center;	
+}
+#vyhodnotenie TD.text {	
+	text-align: left;
+	vertical-align: middle;
+	width: 240px;
+}
+#vyhodnotenie TD.text2 {		
+	vertical-align: middle;
+	width: 160px;
+}
+#vyhodnotenie TH {	
+    text-align: center;
+	vertical-align: middle;	
+}
+
+
+
+/* matematicke znaky a podobne */
+span.math {
+	font-family: symbol;	
+}
+
+/*********************************/
+/* T E S T  S  KODOVANIM RETAZCA */
+#table_edit_text {
+	
+}
+#table_edit_text ul {
+	background-color: white;
+	width: 20px;
+	color: red;
+	font-family: monospace;
+	list-style: none;
+	cursor: pointer;
+}
+#table_edit_text li {
+	display: inline;
+}
+#table_edit_text li.current {
+	background-color: brown;
+	color: white;	
+	cursor: default;
+	text-decoration: blink;
+}
+
+
+tr.bejska64 {  /* riadok stringu so znakmi z base64 (okrem / ) */
+	background-color: yellow;
+	font-family: monospace;
+	font-size: 90%;
+	font-weight: bold;
+	
+}
+tr.arrows { /* riadok so sipkami */
+	font-size: 70%;
+}
+table.bejska64_tab { /* tabulka s riadkami s bejs64 */
+    cursor: default;
+}
+table.bejska64_tab { /* tabulka s riadkami s bejs64 */
+    
+}
+.bejska64_cols_overhead { /* stlpce nadbytocnosti */
+	background-color: cyan;
+}
+
+.bejska64_good {  /* dobre opraveny znak v tabulke */
+	color: green;
+	border: 1px dotted green;
+}
+.bejska64_bad {  /* zle opraveny znak v tabulke */
+	color: red;
+	border: 1px dashed red;
+}
+
+.medziriadkami { /* text medzi riadkami v tabulke ako to prebiahalo s textom */
+    font-size: small;
+    font-style: italic;
+    
+}
+
+.sipka_good {    
+	color: green;
+	font-weight: bold;
+	text-align: center;
+}
+.sipka_bad {	
+	color: red;
+	font-weight: bold;
+	text-align: center;
+}
+
+/* K O M P O N E N T Y */
+#rsparts_obsah ul,tr {
+	text-align: left;
+}
+#rsparts_obsah li {
+	margin: 3px;
+}
+
+#rsparts_obsah li:first-line {
+	font-size: 110%;
+}
+
+.msg_ok {
+    color: blue;
+}
+.msg_bad {
+    color: red;
+}
+
+
+.func,.func_click { /* farba nazvu funkcie */
+	font-family: monospace;
+	color: green;
+	font-style: italic;	
+	background-color: inherit;	
+}
+.func_click {
+    cursor:pointer;cursor:hand;
+    text-align: center;
+}
+.func_click:hover {  /* vyber funkcie na kliknutie */                
+    color: red;    
+}
+
+.param { /* farba parametrov funkcii */
+		color: purple;
+		background-color: inherit;
+		font-style: italic;
+		font-family: serif;
+        border: 0px;		
+}
+input.param:hover { /* nad input fieldom na zmenie udaju */
+    background-color: orange;
+}
+
+em.prem { /* farba premennej v zozname */
+		color: orange;	
+}
+p.podsub {  /* nadpis h4 defacto */
+	text-align: left;
+	text-size: 200%;
+	color: brown;
+	font-style: italic;
+}
+
+
+/***********************************************/
+/***  G L O B A L N Y    T E S T ***************/
+#vysledky { /* div oblasti medzi napisom h2 a formularom globalneho textu na zobrazenie vysledkov */
+	text-align: center;			
+}
+
+#vysledky table {    
+    margin: auto;
+}
+
+#global_test_table {	
+	margin: 5px;
+}
+#global_test_table td.input {
+	width:40%;
+	text-align: left;
+}
+#global_test_table td.submit {
+	width:25%;
+	text-align: right;
+}
+#global_test_table td.submit input {
+	width: 100%;
+}
+ 
+ 
+ 
+/* P E K N E   N A F O R M A T O V A N Y   P O L Y N O M */
+span.nice_polynom {
+	font-family: monospace;
+	color: black;
+	font-size: 16px;		
+}
+
+/*******************************/
+/* C H Y B O V E   S P R A V Y */
+P.chyba {
+	color: red;
+	font-family: sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	
+}
+
+
+/* C O P Y R I G H T */
+#copyright {	
+	color: white;
+	text-align: center;	
+}
+#copyright A {
+	color: white;
+	font-family: monospace;
+}
+
+/* I N F O   O  P O C T E   S E K U N D   G E N E R O V A N I A*/
+#sekund {
+	color: #C5C5C5;	
+}

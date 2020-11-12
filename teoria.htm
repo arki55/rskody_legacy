@@ -1,0 +1,326 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Princípy Reed</title>
+</head>
+
+<body>
+
+<h2>Princípy
+Reed-Solomon kódov <o:p>
+</o:p>
+ <o:p>
+</o:p>
+ </h2>
+<p>Reed-Solomon
+kódy sú aparátom využívaným pri prenosoch informácií kanálom na doprednú
+ochranu údajov. Sú to blokové kódy, ktoré pridaním nadbyto&#269;nosti –
+ochranných bitov vypo&#269;ítaných algoritmom, ochránia prenášanú informáciu.
+Ich výhodou je, že dokážu opravi&#357; až nieko&#318;ko chybných prvkov
+prenášaných za sebou, bez potreby dodato&#269;ného premiešania bitov. Pri&#269;om
+sú to nebinárne kódy, kde prvok je hne&#271; množina bitov, pod&#318;a typu
+použitého RS kódu. <o:p>
+</o:p>
+ </p>
+<h3>Kone&#269;né
+polia <o:p>
+</o:p>
+ </h3>
+<p>Reed-Solomon
+kódy sú nebinárne – každý prvok je z&nbsp;množiny kone&#269;ného po&#318;a
+GF (Galois Field). GF pole je algebraickou štruktúrou, v&nbsp;ktorej existujú
+základné matematické operácie plus, mínus, krát a&nbsp;deleno medzi
+jednotlivými prvkami. Pri&#269;om pre všetky prvky kone&#269;ného po&#318;a
+platí, že s&#269;ítaním, od&#269;ítaním, vyanásobením alebo vydelením
+&#318;ubovo&#318;ných dvoch prvkov opä&#357; dostaneme prvok z&nbsp;tohoto po&#318;a.
+Kone&#269;né pole zapisujeme ako GF(q), kde „q“ je po&#269;et prvkov tohoto
+po&#318;a. Kone&#269;né pole GF(2) pozostáva napríklad z&nbsp;prvkov {0, 1}.
+Pole rozšírené je také, ktoré je vyjadrené ako GF(r<sup>m</sup>), kde
+„r“ aj „m“ sú kladné celé &#269;ísla. Pre potreby RS kódov je
+parameter „r“ vždy &#269;íslo 2. Je to z&nbsp;dôvodu toho, že všetky
+informácie v&nbsp;informatike sú binárne. Príklad môže by&#357; GF(2<sup>5</sup>),
+po&#269;et prvkov po&#318;a bude 32 a&nbsp;ak prvky chceme vyjadri&#357; v&nbsp;binárnej
+forme, potrebujeme na každý jeden prvok práve 5 bitov, teda „m“. Rozšírené
+pole GF(2<sup>m</sup>) získame pomocou primitívneho polynómu stup&#328;a
+„m“, ktorého prvky sú z&nbsp;GF(2). Pre vytvorenie GF(2<sup>m</sup>)
+existuje vždy minimálne jeden takýto primitívny polynóm, ktorý dokáže
+zadefinova&#357; všetky prvky rozšíreného po&#318;a, okrem nulového prvku
+(binárne nula), ktorý je ozna&#269;ovaný ako  &alpha; <sup>-&infin;</sup>.
+&#270;alšie prvky ozna&#269;ujeme  &alpha; <sup>0 </sup> až  &alpha; <sup>(2^m
+-2) </sup>. Do opisovaného
+kone&#269;ného po&#318;a patrí aj prvok  &alpha; <sup>0 </sup> = 1 v binárnom zápise. <o:p>
+</o:p>
+ </p>
+<p>Všetky
+&#271;alšie prvy dostaneme:<o:p>
+</o:p>
+ </p>
+<p>
+<img src="pics/teoria1.gif" v:shapes="_x0000_i1030" width="120" height="24">
+<o:p>
+</o:p>
+ </p>
+<p>kde
+p(x) je primitívny polynóm pre vytvorenie potrebného GF(q).<o:p>
+</o:p>
+ </p>
+<p>Operácie plus a&nbsp;mínus sú totožné, vykonávajú sa nad prvkami pre
+každý bit osobitne. Násobenie a&nbsp;delenie je vhodnejšie robi&#357; v&nbsp;nebinárnom
+zápise ako napríklad  &alpha; <sup>6 </sup> *  &alpha; <sup>3 </sup>. Pri násobení mocniny ako normálne s&#269;itujeme, pri delení od&#269;itujeme.
+Pokia&#318; výsledné  &alpha 
+nepatrí do množiny GF(q), tak pri&#269;ítame alebo od&#269;ítame (q-1) v&nbsp;prípade
+delenia alebo násobenia. <o:p>
+</o:p>
+ </p>
+<p>Nie
+každý polynóm nad GF(2) je aj primitívnym polynómom. Platné sú len také,
+ktoré vytvoria GF(q) s&nbsp;neopakujúcimi sa prvkami. Pokia&#318; nevieme
+primitívny polynóm pre požadovaný stupe&#328; „m“, vyh&#318;adanie
+niektorého alebo hne&#271; všetkých primitívnych polynómov nie je zložité,
+len vyžaduje výpo&#269;tovú techniku. Princípom je otestova&#357; všetky možné
+polynómy s&nbsp;najvyššou mocninou „m“. Možností je „q“, ale ke&#271;že
+primitívny polynóm v&nbsp;binárnom tvare nielen za&#269;ína ale aj kon&#269;í
+binárnou jednotkou tak po&#269;et možných polynómov je len polovica z&nbsp;toho.
+Všetky polynómy otestujeme vytvorením GF(q), pri&#269;om musí platit&#357;
+spomenuté pravidlo aby sa žiaden prvok neopakoval. <o:p>
+</o:p>
+<o:p>
+</o:p>
+ </p>
+<h3>Blokové
+kódy <o:p>
+</o:p>
+ </h3>
+<p>&nbsp;<o:p>
+</o:p>
+Reed-Solomon kódy pracujú s&nbsp;blokmi dát. Každá informácia spracovávaná
+kóderom musí by&#357; rozsekaná na bloky dohodnutej d&#314;žky – pod&#318;a
+toho akú d&#314;žku ten ktorý kód vyžaduje. Takéto kódy sú ozna&#269;ované
+ako (n, k) kódy, kde „n“ je d&#314;žka kódového slova po zakódovaní
+informácie a „k“ je d&#314;žka jedného bloku vstupných dát. Vstupná a&nbsp;výstupná
+informácia pozostáva zo symbolov z&nbsp;GF(2<sup>m</sup>). Tieto symboly sú
+usporiadané ako koeficienty v&nbsp;polynóme, pri&#269;om stupe&#328; premennej
+X indikuje poradie v&nbsp;akom kóder a&nbsp;dekóder tieto symboly spracuváva.
+Kódovanie môže by&#357; prevedené systematicky alebo nesystematicky.
+Systematické má nieko&#318;ko výhod, preto sa &#271;alej budeme zaobera&#357;
+len touto metódou. Jeden blok – kódové slovo vyzerá nasledovne:<o:p>
+</o:p>
+ </p>
+<p><img src="pics/teoria2.gif" v:shapes="_x0000_s1026 _x0000_s1027 _x0000_s1028 _x0000_s1029 _x0000_s1030" alt="Obrázok 1: Kódové slovo v systematickom tvare" width="354" height="74"> &nbsp; </p>
+<p>Význam
+symbolov v&nbsp;obrázku:<o:p>
+</o:p>
+ </p>
+<ul style="margin-top:0cm" type="disc">
+  <li class="MsoNormal" style="mso-list:l15 level1 lfo9;tab-stops:list 36.0pt">N
+    – celkový po&#269;et symbolov z&nbsp;GF(q).<o:p>
+    </o:p>
+     </li>
+  <li class="MsoNormal" style="mso-list:l15 level1 lfo9;tab-stops:list 36.0pt">M
+    – po&#269;et symbolov dátovej &#269;asti. Zakódovaná informácia je
+    priamo obsiahnutá v&nbsp;prvých M prvkoch. To je hlavná výhoda
+    systematického kódu. Preto pri dekódovaní je potrebné zisti&#357; len
+    &#269;i je prijaté kódové slovo platné a&nbsp;ak áno tak prijatá
+    informácia je priamo prvých M prvkov. Pri nesystematickom kóde treba
+    dodato&#269;ne prijaté kódové slovo dekódova&#357;.<o:p>
+    </o:p>
+     </li>
+  <li class="MsoNormal" style="mso-list:l15 level1 lfo9;tab-stops:list 36.0pt">R
+    – po&#269;et symbolov zabezpe&#269;ovacej &#269;asti. Po&#269;et týchto
+    prvkov je priamo úmerný „sile“ kódu a&nbsp;to po&#269;tu symbolov,
+    ktoré je kód schopný opravi&#357;.<o:p>
+    </o:p>
+     </li>
+</ul>
+<p>Naviac RS kódy sú cyklické. To znamená,
+že cyklickým posunom každého kódového slova vznikne &#271;alšie platné kódové
+slovo. RS kódy majú aj pevne definovanú d&#314;žku kódového slova&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  N = q –
+1. </p>
+<p>&nbsp;<o:p>
+</o:p>
+ </p>
+<h3>Systematické
+kódovanie <o:p>
+</o:p>
+ </h3>
+<p>Kódovanie
+všeobecne blokových kódov prebieha za pomoci generujúceho polynómu. Pri
+blokových kódoch to je polynóm, ktorý si zvolíme, &#269;ím je aj kód ur&#269;ený.
+Pri RS kódoch takýto generujúci polynóm je potrebné najprv vypo&#269;íta&#357;.
+Tvar tohoto polynómu závisí hlavne od po&#269;tu chýb, ktoré je kód schopný
+opravi&#357;. Generujúci polynóm je vyjadrený ako:<o:p>
+</o:p>
+ </p>
+<p>
+<img src="pics/teoria3.gif" v:shapes="_x0000_i1025" width="192" height="61">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ , kde „j“ je po&#269;iato&#269;ný index, zvy&#269;ajne 0 alebo 1.<sup><o:p>
+</o:p>
+</sup> </p>
+<p>Najjednoduchší
+spôsob ako zo vstupnej informácie vytvori&#357; kódové slovo by bolo:<o:p>
+</o:p>
+ </p>
+<p>
+<img src="pics/teoria4.gif" v:shapes="_x0000_i1026" width="192" height="39">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ nesystematické kódovanie<o:p>
+</o:p>
+ </p>
+<p>Výsledné kódové slovo by bolo platné,
+ke&#271;že by bolo spätne delite&#318;né generujúcim polynómom bez zvyšku.
+Avšak pri dekódovaní i&nbsp;pri bezchybnom prenose kódového slova je potrebné
+delenie na zistenie pôvodnej informácie. Ušetrením tohoto kroku je vytvori&#357;
+také kódové slovo, ktoré samotné obsahuje symboly pôvodnej informácie na
+dohodnutých miestach. Ako to dosiahnu&#357; ? </p>
+<ol style="margin-top:0cm" start="1" type="1">
+  <li class="MsoNormal" style="mso-list:l14 level1 lfo10;tab-stops:list 36.0pt">Kódové
+    slovo musí obsahova&#357; zdrojovú informáciu. Preto posunieme informáciu
+    tak, aby symboly hne&#271; od najvyšších mocnín vynásobením informa&#269;ného
+    polynómu x<sup>n-r</sup>. Najnižších „r“ mocnín X nebude výsledok
+    kvôli násobeniu obsahova&#357; .<br>
+    <img src="pics/teoria5.gif" v:shapes="_x0000_i1027" width="156" height="35">
+    <o:p>
+    </o:p>
+     </li>
+  <li class="MsoNormal" style="mso-list:l14 level1 lfo10;tab-stops:list 36.0pt">Kódové
+    slovo musí by&#357; delite&#318;né generujúcim polynómom. Preto zistíme
+    zvyšok po delení výsledku z&nbsp;bodu 1 generujúcim polynómom.<br>
+    <img src="pics/teoria6.gif" v:shapes="_x0000_i1028" width="216" height="31">
+    <o:p>
+    </o:p>
+     </li>
+  <li class="MsoNormal" style="mso-list:l14 level1 lfo10;tab-stops:list 36.0pt">Od&#269;ítaním
+    (alebo pri&#269;ítaním) zvyšku z&nbsp;bodu 2 k&nbsp;polynómu c1 z&nbsp;bodu
+    1 získame výsledné kódové slovo. Celý výpo&#269;et v&nbsp;jednej
+    vete:<br>
+    <img src="pics/teoria7.gif" v:shapes="_x0000_i1029" width="276" height="27">
+    <o:p>
+    </o:p>
+     </li>
+</ol>
+<p>&nbsp;<o:p>
+</o:p>
+ </p>
+<h3>Dekódovanie
+Reed Solomon kódov <o:p>
+</o:p>
+ </h3>
+<p>Dekódovanie
+RS kódov je ove&#318;a zložitejšie ako dekódovanie blokových kódov.
+Vlastne samotné dekódovanie nie, pretože pri nesystematickom kóde by sa
+jednalo len o&nbsp;vydelenie g(x) a&nbsp;pri systematickom je informácia priamo
+obsiahnutá v&nbsp;kódovom slove. Detekcia a&nbsp;oprava chýb je zložitejšia.
+Je potrebné nájs&#357; lokátory, &#269;o sú priamo pozície v&nbsp;kódovom
+slove na ktorých vznikli chyby, ako aj hodnoty chýb na týchto pozíciách. Následne
+pri&#269;ítaním chýb k&nbsp;prvkom na pozíciách daných lokátormi získame
+opravené kódové slovo. Opravené kódové slovo bude však zhodné s&nbsp;vyslaným
+len vtedy ak platí podmienka:<o:p>
+</o:p>
+ </p>
+<p>
+<img src="pics/teoria8.gif" v:shapes="_x0000_i1031" width="77" height="21">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ , kde „t“ je po&#269;et chybných symbolov v&nbsp;prijatom kódovom
+slove.<o:p>
+</o:p>
+ </p>
+<p>Alebo, ak je
+použitý dekódovací algoritmus, ktorý sa vie vysporiada&#357; aj so
+zmazaniami, ktoré poskytne hardvér:<o:p>
+</o:p>
+ </p>
+<p><i>
+<img src="pics/teoria9.gif" v:shapes="_x0000_i1032" width="104" height="21">
+ </i>  &nbsp;&nbsp;&nbsp;
+ ,&nbsp;  „f“ je po&#269;et
+zaznamenaných zmazaní.<o:p>
+</o:p>
+ </p>
+<p> Zmazanie je
+dodato&#269;ná funk&#269;nos&#357; prijímacieho hardvéru, ktorý dokáže
+detekova&#357; priamo neplatnos&#357; prijatého symbolu a&nbsp;túto informáciu
+poskytne aj dekóderu. Základný postup na dekódovanie RS kódov však túto
+informáciu využi&#357; nevie.  </p>
+<p> Nasledujúci
+obrázok obsahuje jednotlivé kroky pre dekódovanie kódového slova.<o:p>
+</o:p>
+ </p>
+<p>
+<img src="pics/teoria10.gif" align="left" v:shapes="_x0000_s1031 _x0000_s1032 _x0000_s1033 _x0000_s1034 _x0000_s1035 _x0000_s1036 _x0000_s1037 _x0000_s1038 _x0000_s1039 _x0000_s1040 _x0000_s1041 _x0000_s1042 _x0000_s1043 _x0000_s1044 _x0000_s1045 _x0000_s1046 _x0000_s1047 _x0000_s1048 _x0000_s1049 _x0000_s1050 _x0000_s1051 _x0000_s1052 _x0000_s1053 _x0000_s1054 _x0000_s1055 _x0000_s1056 _x0000_s1057 _x0000_s1058 _x0000_s1059 _x0000_s1060 _x0000_s1061 _x0000_s1062" alt="Obrázok 2: Kroky dekódovania RS kódov.&nbsp;" width="602" height="110"></p>
+<p></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p> Syndrómy S<sub>k</sub>
+pre RS kódy definované vz&#357;ahmi:<o:p>
+</o:p>
+ </p>
+<p>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="pics/teoria11.gif" v:shapes="_x0000_i1033" width="204" height="28">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ , kde k=j, j+1, ..., j + 2t – 1<o:p>
+</o:p>
+ </p>
+<p> Pri&#269;om
+syndrómy zárove&#328; vyjadrujú aj:<o:p>
+</o:p>
+ </p>
+<p>
+<img src="pics/teoria12.gif" v:shapes="_x0000_i1034" width="144" height="70">
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ , kde k = j, j+1, ... , j + 2t – 1, X<sub>i</sub> ozna&#269;uje lokátor
+i-tej chyby, Y<sub>i</sub> ozna&#269;uje hodnotu chyby.<o:p>
+</o:p>
+ </p>
+<p> &nbsp;<o:p>
+</o:p>
+ </p>
+<p> Lokátor bude
+tiež prvkom po&#318;a GF(q), jeho exponent ur&#269;uje polohu chyby. Pre dekódovanie
+je teda potrebné rieši&#357; sústavu nelineárnych rovníc, ktoré je ale možné
+pretransformova&#357; na sústavu lineárnych rovníc pomocou polynómu lokátorov
+ s (x).<o:p>
+</o:p>
+ </p>
+<p>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="pics/teoria13.gif" v:shapes="_x0000_i1035" width="216" height="31">
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ , pri&#269;om 
+<img src="pics/teoria14.gif" v:shapes="_x0000_i1036" width="146" height="26">
+<o:p>
+</o:p>
+ </p>
+<p>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="pics/teoria15.gif" v:shapes="_x0000_i1037" width="299" height="33">
+<o:p>
+</o:p>
+ </p>
+<p> Po vynásobení
+vz&#357;ahu Y<sub>i</sub>X<sub>i</sub><sup>j</sup>, dostaneme<o:p>
+</o:p>
+ </p>
+<p>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="pics/teoria16.gif" v:shapes="_x0000_i1038" width="396" height="32">
+<o:p>
+</o:p>
+</p>
+<p>Rovnice možno
+vyjadri&#357; aj ako:<o:p>
+</o:p>
+</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="pics/teoria17.gif" v:shapes="_x0000_i1039" width="312" height="35">
+&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+, kde i = 0, 1, ..., t-1<o:p>
+</o:p>
+</p>
+Nájdenie polynómu lokátorov, hodnôt chýb znamená rieši&#357; sústavu
+lineárnych rovníc. Nájdenie lokátorov sa rieši Chienovým algoritmom v&nbsp;ktorom
+sa postupne dosadzujú všetky prvky z&nbsp;GF(q) do polynómu lokátorov – h&#318;adanými
+lokátormi sú korene tejto rovnice.
+</body>
+
+</html>
